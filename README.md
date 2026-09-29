@@ -1,5 +1,6 @@
 # 🚀 Brahmion Spacetech — Official Cinematic Web Platform
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000.svg?logo=vercel&logoColor=white)](https://brahmion-spacetech-website.vercel.app/)
 [![React](https://img.shields.io/badge/React-18.3-blue.svg?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6.svg?logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF.svg?logo=vite)](https://vitejs.dev/)
@@ -7,8 +8,9 @@
 [![Three.js](https://img.shields.io/badge/Three.js-R3F-black.svg?logo=three.js)](https://threejs.org/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11-FF0055.svg?logo=framer)](https://www.framer.com/motion/)
 
-> **"|| ब्रह्माण्डस्य नवप्रयाणम् ||"**  
-> *A Next-Generation Web Experience Built for Brahmion Spacetech — Pioneering Green In-Space Propulsion at SIIC, IIT Kanpur.*
+> 🌐 **Live Website**: [https://brahmion-spacetech-website.vercel.app/](https://brahmion-spacetech-website.vercel.app/)  
+> 🚀 **Official Client**: [Brahmion Spacetech Pvt. Ltd.](https://www.brahmionspacetech.com) (SIIC, IIT Kanpur)  
+> **"|| ब्रह्माण्डस्य नवप्रयाणम् ||"** — *A Next-Generation Web Experience Built for Brahmion Spacetech — Pioneering Green In-Space Propulsion at SIIC, IIT Kanpur.*
 
 ---
 
@@ -19,6 +21,8 @@ This repository contains the complete frontend web platform developed for **Brah
 Brahmion Spacetech develops high-performance, non-toxic green monopropellant systems (HAN-ADN, BHP-90 HTP), ceramic catalyst beds, and micro-pulse thruster hardware designed to replace hazardous, cancer-causing hydrazine fuels in modern space missions.
 
 The objective of this web application is to deliver an **ultra-modern, cinematic, aerospace-grade digital presence** that reflects the cutting-edge engineering and scientific pedigree of the startup.
+
+🔗 **Explore Live Site**: [https://brahmion-spacetech-website.vercel.app/](https://brahmion-spacetech-website.vercel.app/)
 
 ---
 
@@ -73,7 +77,7 @@ High-visibility partner ecosystem grid highlighting official incubation and accr
 | **3D Rendering** | Three.js, React Three Fiber (`@react-three/fiber`), Drei (`@react-three/drei`) |
 | **Animations** | Framer Motion (Smooth layout springs, scroll tracking, text reveals) |
 | **Icons** | Lucide React |
-| **Deployment** | Vercel / Netlify / Cloudflare Pages / GitHub Pages (`dist/`) |
+| **Deployment** | Vercel (`dist/`) |
 
 ---
 
@@ -81,8 +85,8 @@ High-visibility partner ecosystem grid highlighting official incubation and accr
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/brahmion-spacetech.git
-cd brahmion-spacetech
+git clone https://github.com/231B121/-brahmion-spacetech-Website-.git
+cd -brahmion-spacetech-Website-
 ```
 
 ### 2. Install Dependencies
@@ -106,16 +110,15 @@ Creates an optimized production bundle in the `dist/` directory.
 
 ## 🌐 Deployment
 
-This project builds into standard static HTML/JS/CSS:
-- **Vercel**: Run `npx vercel` in root, or link your GitHub repo.
-- **Netlify**: Drag and drop the `dist/` directory into [app.netlify.com/drop](https://app.netlify.com/drop).
-- **GitHub Pages**: Set build directory to `dist` with base path `./`.
+* **Live URL (Vercel)**: [https://brahmion-spacetech-website.vercel.app/](https://brahmion-spacetech-website.vercel.app/)
+* **GitHub Pages Backup**: [https://231B121.github.io/-brahmion-spacetech-Website-/](https://231B121.github.io/-brahmion-spacetech-Website-/)
 
 ---
 
 ## 👨‍💻 Developer & Attribution
 
-* **Website Developed By**: [Your Name / GitHub Profile]
+* **Live Deployment**: [https://brahmion-spacetech-website.vercel.app/](https://brahmion-spacetech-website.vercel.app/)
+* **GitHub Repository**: [https://github.com/231B121/-brahmion-spacetech-Website-](https://github.com/231B121/-brahmion-spacetech-Website-)
 * **Client / Startup**: [Brahmion Spacetech Pvt. Ltd.](https://www.brahmionspacetech.com)
 * **Incubation**: SIDBI Building, IIT Kanpur, Uttar Pradesh, India - 208016
 * **Official Contact**: office@brahmionspacetech.com
