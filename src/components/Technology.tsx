@@ -14,16 +14,20 @@ export default function Technology() {
   return (
     <Section id="technology" label="Technology" className="bg-gradient-to-b from-transparent via-navy/60 to-transparent">
       <div className="wrap">
-        <p className="eyebrow mb-6">03 / TECHNOLOGY</p>
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+          <span>INTERACTIVE 3D THRUSTER CAD</span>
+        </div>
         <h2 className="h2"><WordReveal text="Propulsion," /><br /><WordReveal text="reimagined." delay={0.15} /></h2>
         <div className="mt-12 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div className="hairline grid-bg relative h-[420px] sm:h-[560px]" data-cursor data-cursor-label="EXPLORE +">
+          <div className="rounded-lg border border-line/80 bg-surface/60 relative h-[420px] sm:h-[560px] overflow-hidden" data-cursor data-cursor-label="EXPLORE +">
             <ErrorBoundary fallback={<SceneFallback />}>
               <Suspense fallback={<div className="grid h-full place-items-center font-mono text-xs text-slate-500">LOADING MODEL…</div>}>
                 <TechScene selected={sel} onSelect={setSel} mobile={mobile} reduced={reduced} />
               </Suspense>
             </ErrorBoundary>
-            <span className="absolute left-3 top-3 font-mono text-[10px] tracking-widest text-slate-500">ILLUSTRATIVE MONOPROPELLANT THRUSTER</span>
+            <span className="absolute left-3 top-3 font-mono text-[10px] tracking-widest text-cyan font-bold">
+              CAD HARDWARE ARCHITECTURE · 100 mN CLASS
+            </span>
           </div>
           <div>
             <div role="tablist" aria-label="Thruster parts" className="flex flex-wrap gap-2">
@@ -42,7 +46,9 @@ export default function Technology() {
                 )}
               </AnimatePresence>
             </div>
-            <p className="mt-4 font-mono text-[11px] leading-relaxed text-slate-500">Generic architecture for explanation. No Brahmion performance figures are shown. Tap “+” markers or the tabs.</p>
+            <p className="mt-4 font-mono text-[11px] leading-relaxed text-slate-400">
+              In-house hardware architecture developed at SIIC, IIT Kanpur. Tap 3D interactive markers or select sub-assemblies above to inspect component engineering.
+            </p>
           </div>
         </div>
       </div>

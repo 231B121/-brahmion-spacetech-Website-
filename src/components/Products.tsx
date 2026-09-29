@@ -1,15 +1,28 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Sparkles, Tag, ShieldCheck } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, CheckCircle2, Sparkles, Tag, ShieldCheck, Filter } from 'lucide-react'
 import Section from './ui/Section'
 import { flagship, products, type Product } from '../data/products'
 import { assetPath, scrollToId } from '../lib/utils'
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({
+  product,
+  onRequest,
+}: {
+  product: Product
+  onRequest: (p: Product) => void
+}) {
   const [imgError, setImgError] = useState(false)
 
   return (
-    <article className="hairline group relative flex flex-col justify-between overflow-hidden bg-white/[0.02] p-6 transition-all duration-300 hover:border-cyan/60 hover:bg-white/[0.04]">
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
+      className="relative rounded-lg flex flex-col justify-between overflow-hidden bg-surface/85 border border-line/90 p-6 transition-all duration-300 hover:border-cyan/60 hover:bg-surface shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+    >
       {/* Accent corner */}
       <div className="absolute top-0 right-0 h-12 w-12 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 h-[2px] w-8 bg-cyan/50" />
@@ -110,31 +123,59 @@ function ProductCard({ product }: { product: Product }) {
       {/* CTA Button */}
       <div className="mt-6 pt-4 border-t border-line/60">
         <button
-          onClick={() => scrollToId('contact')}
-          className="w-full flex items-center justify-center gap-2 rounded border border-line bg-white/[0.04] py-2.5 font-mono text-xs uppercase tracking-wider text-white transition-all duration-300 hover:border-cyan hover:bg-cyan/15 hover:text-cyan"
+          onClick={() => onRequest(product)}
+          className="w-full flex items-center justify-center gap-2 rounded border border-line bg-white/[0.04] py-2.5 font-mono text-xs uppercase tracking-wider text-white transition-all duration-300 hover:border-cyan hover:bg-cyan/15 hover:text-cyan active:scale-95"
         >
           <span>REQUEST PROPOSAL / DATASHEET</span>
           <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
         </button>
       </div>
-    </article>
+    </motion.article>
   )
 }
 
+const CATEGORIES = [
+  { id: 'ALL', label: 'ALL SOLUTIONS' },
+  { id: 'Green Propellant', label: 'GREEN PROPELLANTS' },
+  { id: 'Catalyst Technology', label: 'CATALYSTS' },
+  { id: 'Hardware Thruster', label: 'MICRO THRUSTERS' },
+  { id: 'Integrated Propulsion', label: 'INTEGRATED SYSTEMS' },
+]
+
 export default function Products() {
+  const [activeCategory, setActiveCategory] = useState('ALL')
+  const [toastMessage, setToastMessage] = useState<string | null>(null)
+
+  const filtered =
+    activeCategory === 'ALL'
+      ? products
+      : products.filter((p) => p.category === activeCategory)
+
+  const handleRequest = (p: Product) => {
+    setToastMessage(`Datasheet request initiated for "${p.name}". Scrolling to contact desk...`)
+    setTimeout(() => {
+      scrollToId('contact')
+    }, 400)
+    setTimeout(() => {
+      setToastMessage(null)
+    }, 4500)
+  }
+
   return (
-    <Section id="products" label="Products" className="overflow-hidden">
+    <Section id="products" label="Products" className="overflow-hidden py-24">
       <div className="wrap">
-        <p className="eyebrow mb-4">05 / PROPULSION CATALOGUE</p>
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+          <span>PROPULSION CATALOGUE</span>
+        </div>
         <h2 className="h2 mb-4">Propulsion Solutions for the New Space Era</h2>
         <p className="body-copy max-w-3xl mb-12">
           Engineered as high-performance, non-toxic alternatives to hydrazine. From flight-grade green monopropellants to ceramic catalyst beds and precision micro thrusters.
         </p>
 
         {/* Flagship Section */}
-        <div className="mb-16 hairline bg-white/[0.02] p-6 sm:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[11px] text-cyan/70 tracking-widest uppercase">
-            // IN-HOUSE FLAGSHIP
+        <div className="mb-16 rounded-lg border border-line/80 bg-surface/75 p-6 sm:p-10 relative overflow-hidden backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+          <div className="absolute top-0 right-0 p-4 font-mono text-[11px] text-cyan tracking-widest uppercase font-bold">
+            IN-HOUSE FLAGSHIP HARDWARE
           </div>
 
           <motion.h3
@@ -199,31 +240,71 @@ export default function Products() {
                   <text x="295" y="30">EXPANSION NOZZLE</text>
                 </g>
                 <text x="60" y="245" fontFamily="monospace" fontSize="8" fill="#64748b">
-                  ILLUSTRATIVE HARDWARE SCHEMATIC — HOT-FIRE TESTED
+                  HARDWARE ARCHITECTURE // SIIC IIT KANPUR HOT-FIRE STAND
                 </text>
               </svg>
             </div>
           </div>
         </div>
 
-        {/* All Products Grid with Images and Pricing */}
+        {/* All Products Grid with Interactive Filter */}
         <div>
-          <div className="mb-8 flex items-center justify-between border-b border-line pb-4">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-cyan">
-              // COMPLETE PRODUCT LINEUP & PRICING
-            </span>
-            <span className="font-mono text-xs text-slate-500">
-              5 FLIGHT-READY TECHNOLOGIES
-            </span>
+          <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-line pb-4">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan block mb-1 font-bold">
+                PROPULSION SOLUTIONS &amp; PRICING
+              </span>
+              <span className="font-mono text-xs text-slate-500">
+                5 FLIGHT-READY TECHNOLOGIES · TRL 3 TO 4
+              </span>
+            </div>
+
+            {/* Interactive Category Filter Tabs */}
+            <div className="flex flex-wrap items-center gap-1.5">
+              <Filter size={13} className="text-cyan/70 mr-1 hidden sm:block" />
+              {CATEGORIES.map((cat) => {
+                const isSelected = activeCategory === cat.id
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-wider uppercase transition-all ${
+                      isSelected
+                        ? 'bg-cyan text-void shadow-[0_0_12px_rgba(90,209,230,0.5)]'
+                        : 'border border-line/80 text-slate-400 hover:border-slate-500 hover:text-white'
+                    }`}
+                  >
+                    {cat.label}
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+          <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence>
+              {filtered.map((p) => (
+                <ProductCard key={p.id} product={p} onRequest={handleRequest} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
+
+      {/* Floating Interactive Toast Feedback */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-lg border border-cyan/50 bg-void/95 px-5 py-3 font-mono text-xs text-white shadow-[0_0_25px_rgba(90,209,230,0.4)] backdrop-blur-xl"
+          >
+            <span className="h-2 w-2 rounded-full bg-cyan animate-ping" />
+            <span>{toastMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   )
 }
