@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { scrollToId } from '../lib/utils'
 import MagneticButton from './ui/MagneticButton'
@@ -13,17 +13,28 @@ export default function Hero({ ready }: { ready: boolean }) {
   const reduced = useReducedMotion()
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 800], [0, reduced ? 0 : 160])
+  const [utcTime, setUtcTime] = useState('')
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date()
+      setUtcTime(now.toISOString().slice(11, 19) + ' UTC')
+    }
+    update()
+    const timer = setInterval(update, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <section id="home" aria-label="Home" className="relative flex min-h-screen items-center overflow-hidden">
-      {/* Background Gradients */}
+      {/* Background Ambient Atmosphere */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(124,108,255,0.16),transparent_55%),radial-gradient(ellipse_at_20%_80%,rgba(90,209,230,0.12),transparent_50%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_65%_25%,rgba(56,189,248,0.22),transparent_60%),radial-gradient(ellipse_at_20%_75%,rgba(99,102,241,0.18),transparent_55%),radial-gradient(circle_at_50%_40%,rgba(22,34,56,0.6),transparent_80%)]"
       />
       <div
         aria-hidden
-        className="absolute -bottom-[55vw] left-1/2 h-[110vw] w-[110vw] -translate-x-1/2 rounded-full border border-cyan/20 bg-[radial-gradient(circle_at_50%_0%,rgba(90,209,230,0.25),rgba(10,16,32,0.9)_45%)] shadow-[0_-30px_120px_rgba(90,209,230,0.15)]"
+        className="absolute -bottom-[50vw] left-1/2 h-[100vw] w-[100vw] -translate-x-1/2 rounded-full border border-cyan/30 bg-[radial-gradient(circle_at_50%_0%,rgba(56,189,248,0.25),rgba(14,22,38,0.95)_48%)] shadow-[0_-30px_140px_rgba(56,189,248,0.2)]"
       />
 
       {/* 3D Scene */}
@@ -45,9 +56,24 @@ export default function Hero({ ready }: { ready: boolean }) {
           transition={{ duration: 0.8 }}
           className="pointer-events-auto mb-6 flex flex-col items-start gap-2"
         >
-          <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-cyan/75">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse" />
-            <span>INCUBATED AT SIIC · IIT KANPUR</span>
+          <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-cyan/75">
+            <div className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse" />
+              <span>INCUBATED AT SIIC · IIT KANPUR</span>
+            </div>
+            {utcTime && (
+              <>
+                <span className="text-white/20 hidden sm:inline">|</span>
+                <span className="text-slate-400 font-mono tracking-widest hidden sm:inline">
+                  UTC <span className="text-cyan font-semibold">{utcTime}</span>
+                </span>
+                <span className="text-white/20 hidden md:inline">|</span>
+                <span className="text-emerald-400 font-mono text-[10px] tracking-wider hidden md:inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  BENCH: NOMINAL
+                </span>
+              </>
+            )}
           </div>
           <div className="font-sans text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-wider text-cyan drop-shadow-[0_0_28px_rgba(90,209,230,0.45)]">
             || ब्रह्माण्डस्य नवप्रयाणम् ||
@@ -122,8 +148,11 @@ export default function Hero({ ready }: { ready: boolean }) {
         </motion.div>
       </motion.div>
 
-      <div aria-hidden className="absolute bottom-6 right-8 font-mono text-[10px] tracking-[0.3em] text-slate-500 hidden sm:block">
-        SCROLL ↓
+      <div aria-hidden className="absolute bottom-6 right-8 font-mono text-[10px] tracking-[0.25em] text-slate-400 hidden sm:flex items-center gap-3">
+        <span className="rounded border border-cyan/30 bg-void/70 px-2.5 py-1 text-cyan/90 backdrop-blur-sm shadow-[0_0_12px_rgba(90,209,230,0.15)]">
+          DRAG 3D MODEL TO ROTATE
+        </span>
+        <span className="text-slate-500">SCROLL ↓</span>
       </div>
     </section>
   )
