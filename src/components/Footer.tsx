@@ -101,6 +101,17 @@ export default function Footer() {
       <div className="wrap border-t border-line/60 pt-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 font-mono text-[11px] text-slate-500">
           <p>© 2026 BRAHMION SPACETECH PVT. LTD. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-1.5 text-slate-400">
+            <span>Handcrafted & Engineered by</span>
+            <a
+              href="https://github.com/231B121"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan font-semibold hover:underline"
+            >
+              Gourav Ojha
+            </a>
+          </div>
           <p className="text-cyan/80 tracking-wider">SAFER PROPULSION · RELIABLE MISSIONS</p>
         </div>
       </div>

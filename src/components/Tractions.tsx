@@ -14,14 +14,16 @@ export default function Tractions() {
   return (
     <Section id="traction" label="Tractions" className="py-20">
       <div className="wrap">
-        <p className="eyebrow mb-4">// 06 — TRACTIONS & ECOSYSTEM</p>
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+          <span>INCUBATION &amp; PARTNERS</span>
+        </div>
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div>
             <h2 className="h2 tracking-tight leading-[0.95]">
               Backed by the <br />
               <span className="text-cyan">Right Hands</span>
             </h2>
-            <p className="body-copy max-w-2xl mt-4 text-slate-300">
+            <p className="body-copy max-w-2xl mt-4 text-slate-200">
               From government innovation programmes to India's premier aerospace incubator, Brahmion's mission is supported, validated, and accelerated by institutions that matter in the new space economy.
             </p>
           </div>
@@ -49,7 +51,7 @@ export default function Tractions() {
           {partners.map((p) => (
             <div
               key={p.name}
-              className="hairline group flex flex-col items-center justify-center p-6 text-center bg-white/[0.02] transition-all duration-300 hover:border-cyan/60 hover:bg-white/[0.05]"
+              className="relative rounded-lg flex flex-col items-center justify-center p-6 text-center bg-surface/80 border border-line/80 transition-all duration-300 hover:border-cyan/60 hover:bg-surface shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
             >
               <div className="relative mb-4 flex h-20 w-full items-center justify-center rounded bg-white/95 p-3.5 shadow-sm transition-transform duration-300 group-hover:scale-105">
                 <img

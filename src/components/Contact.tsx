@@ -36,13 +36,13 @@ export default function Contact() {
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(90,209,230,0.12),transparent_65%)]"
       />
       <div className="wrap relative">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-void/80 px-4 py-1.5 backdrop-blur-md">
+        <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-cyan/30 bg-surface/80 px-4 py-1.5 backdrop-blur-md">
           <span className="font-sans text-xs tracking-wider text-cyan font-medium">
             || ब्रह्माण्डस्य नवप्रयाणम् ||
           </span>
           <span className="h-1 w-1 rounded-full bg-cyan" />
-          <span className="font-mono text-[10px] tracking-widest text-slate-400">
-            // 08 — CONTACT US
+          <span className="font-mono text-[10px] tracking-widest text-slate-300 font-bold uppercase">
+            GET IN TOUCH
           </span>
         </div>
 
@@ -52,12 +52,12 @@ export default function Contact() {
           <WordReveal text="WHAT COMES NEXT." delay={0.15} />
         </h2>
 
-        <p className="body-copy max-w-2xl mt-4 text-slate-300">
+        <p className="body-copy max-w-2xl mt-4 text-slate-200">
           Developing next-generation green propulsion systems for safer, cleaner, and reliable space missions. Reach out for flight-testing, procurement, institutional partnerships, or careers.
         </p>
 
         {/* Draft Topic Selector */}
-        <div className="mt-10 border border-line bg-white/[0.02] p-6 sm:p-8 rounded-sm">
+        <div className="mt-10 rounded-lg border border-line/80 bg-surface/85 p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
           <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
             SELECT INQUIRY TYPE:
           </p>

@@ -9,7 +9,7 @@ function MemberCard({ member }: { member: Member }) {
   const initials = member.name.split(' ').map((n) => n[0]).join('')
 
   return (
-    <article className="hairline group relative flex flex-col justify-between overflow-hidden bg-white/[0.02] p-6 transition-all duration-300 hover:border-cyan/50 hover:bg-white/[0.04]">
+    <article className="relative rounded-lg flex flex-col justify-between overflow-hidden bg-surface/85 border border-line/80 p-6 transition-all duration-300 hover:border-cyan/50 hover:bg-surface shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
       {/* Subtle corner accent */}
       <div className="absolute right-0 top-0 h-10 w-10 overflow-hidden pointer-events-none">
         <div className="absolute right-0 top-0 h-[2px] w-6 bg-cyan/60" />
@@ -119,18 +119,20 @@ export default function Team() {
   const mentors = team.filter((m) => m.category === 'Mentors')
 
   return (
-    <Section id="team" label="Team">
+    <Section id="team" label="Team" className="py-24">
       <div className="wrap">
-        <p className="eyebrow mb-4">09 / CREW & ARCHITECTS</p>
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+          <span>LEADERSHIP &amp; ADVISORS</span>
+        </div>
         <h2 className="h2 mb-4">The minds behind the mission</h2>
-        <p className="body-copy max-w-2xl mb-12">
+        <p className="body-copy max-w-2xl mb-12 text-slate-200">
           Aerospace engineers, propellant chemists, and academic researchers pioneering safe, high-performance in-space propulsion systems at IIT Kanpur.
         </p>
 
         {/* Founders */}
         <div className="mb-14">
           <div className="mb-6 flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-cyan">// 03.10 — FOUNDERS</span>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan font-bold">FOUNDING TEAM</span>
             <div className="h-px flex-1 bg-line/80" />
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -143,7 +145,7 @@ export default function Team() {
         {/* Mentors */}
         <div>
           <div className="mb-6 flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-cyan">// 03.20 — MENTORS & ADVISORS</span>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan font-bold">MENTORS &amp; ADVISORS</span>
             <div className="h-px flex-1 bg-line/80" />
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
