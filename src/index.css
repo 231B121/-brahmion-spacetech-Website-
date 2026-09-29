@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; background: #05070b; }
+body { margin: 0; background: #05070b; color: #eaf1fb; font-family: Inter, ui-sans-serif, system-ui, sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+::selection { background: rgba(90,209,230,.35); }
+:focus-visible { outline: 2px solid #5ad1e6; outline-offset: 3px; }
+html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor [data-cursor] { cursor: none; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-14; }
+  .eyebrow { @apply font-mono text-[11px] uppercase tracking-[0.3em] text-cyan/80; }
+  .display { @apply font-semibold uppercase leading-[0.92] tracking-tight; font-size: clamp(2.4rem, 8.5vw, 8rem); }
+  .h2 { @apply font-semibold uppercase leading-[0.95] tracking-tight; font-size: clamp(2rem, 6vw, 5.5rem); }
+  .body-copy { @apply text-base leading-relaxed text-slate-300/85 sm:text-lg; }
+  .hairline { @apply border border-line; }
+  .btn { @apply inline-flex min-h-[48px] items-center gap-3 border border-line bg-white/[0.03] px-6 font-mono text-xs uppercase tracking-[0.2em] text-white backdrop-blur transition duration-300 hover:border-cyan/60 hover:bg-cyan/10 active:scale-95; }
+  .btn-solid { @apply bg-white text-void hover:bg-cyan hover:text-void; }
+  .link-u { @apply relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-cyan after:transition-transform after:duration-300 hover:after:scale-x-100; }
+}
+.grain::after { content: ''; pointer-events: none; position: fixed; inset: 0; z-index: 90; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.grid-bg { background-image: linear-gradient(rgba(160,200,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(160,200,255,.06) 1px, transparent 1px); background-size: 48px 48px; }
+.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { scrollbar-width: none; }
