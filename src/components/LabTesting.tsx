@@ -6,29 +6,31 @@ export default function LabTesting() {
   return (
     <Section id="lab" label="Lab Testing" className="py-20">
       <div className="wrap">
-        <p className="eyebrow mb-4">// 07 — IN LAB TESTING & VERIFICATION</p>
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+          <span>IN-LAB HOT-FIRE TESTING</span>
+        </div>
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div>
             <h2 className="h2 tracking-tight leading-[0.95]">
               Validated Under Real <br />
               <span className="text-cyan">Firing Conditions</span>
             </h2>
-            <p className="body-copy max-w-2xl mt-4 text-slate-300">
+            <p className="body-copy max-w-2xl mt-4 text-slate-200">
               Hardware built, tested, and integrated in-house. In-lab hot-fire testing at IIT Kanpur confirms ignition response, stable decomposition across catalyst beds, and clean vacuum impulse bits.
             </p>
           </div>
 
-          <div className="font-mono text-xs text-slate-400 space-y-1">
+          <div className="font-mono text-xs text-slate-300 space-y-1">
             <div className="flex items-center gap-2 text-cyan">
               <Sparkles size={14} />
               <span>FACILITY: ANALYTICAL LAB · SIDBI BUILDING</span>
             </div>
-            <p>LAT 26.5123° N — LON 80.2329° E · IIT KANPUR</p>
+            <p className="text-slate-400">LAT 26.5123° N — LON 80.2329° E · IIT KANPUR</p>
           </div>
         </div>
 
         {/* Video Player Card */}
-        <div className="hairline relative overflow-hidden rounded-sm bg-void border border-cyan/30 shadow-[0_0_40px_rgba(90,209,230,0.1)]">
+        <div className="relative overflow-hidden rounded-lg bg-surface/90 border border-line/80 shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
           <div className="relative aspect-[16/9] w-full max-h-[640px] overflow-hidden bg-black">
             <video
               src={assetPath('/assets/lab/thruster-test.mp4')}
