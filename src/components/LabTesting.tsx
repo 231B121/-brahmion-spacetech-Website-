@@ -1,37 +1,34 @@
 import Section from './ui/Section'
 import { assetPath, scrollToId } from '../lib/utils'
-import { Play, Sparkles, CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, ArrowRight } from 'lucide-react'
 
 export default function LabTesting() {
   return (
-    <Section id="lab" label="Lab Testing" className="py-20">
+    <Section id="lab" label="Lab Testing" className="py-24 bg-white">
       <div className="wrap">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
-          <span>IN-LAB HOT-FIRE TESTING</span>
+        <div className="badge mb-4">
+          <span>IN-LAB HOT-FIRE VALIDATION</span>
         </div>
+
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div>
-            <h2 className="h2 tracking-tight leading-[0.95]">
+            <h2 className="h2 tracking-tight text-slate-900">
               Validated Under Real <br />
-              <span className="text-cyan">Firing Conditions</span>
+              <span className="text-[#0284c7]">Hot-Fire Conditions</span>
             </h2>
-            <p className="body-copy max-w-2xl mt-4 text-slate-200">
-              Hardware built, tested, and integrated in-house. In-lab hot-fire testing at IIT Kanpur confirms ignition response, stable decomposition across catalyst beds, and clean vacuum impulse bits.
+            <p className="body-copy max-w-2xl mt-4 text-slate-700 font-medium">
+              Hardware designed, manufactured, and test-fired in-house. In-lab hot-fire qualification at IIT Kanpur validates ignition latency, catalytic bed stability, and repeatable vacuum impulse bits.
             </p>
           </div>
 
-          <div className="font-mono text-xs text-slate-300 space-y-1">
-            <div className="flex items-center gap-2 text-cyan">
-              <Sparkles size={14} />
-              <span>FACILITY: ANALYTICAL LAB · SIDBI BUILDING</span>
-            </div>
-            <p className="text-slate-400">LAT 26.5123° N — LON 80.2329° E · IIT KANPUR</p>
+          <div className="font-sans text-xs text-slate-700 font-medium">
+            TEST FACILITY: <span className="text-slate-900 font-bold">ANALYTICAL LAB · SIDBI BUILDING, IIT KANPUR</span>
           </div>
         </div>
 
         {/* Video Player Card */}
-        <div className="relative overflow-hidden rounded-lg bg-surface/90 border border-line/80 shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
-          <div className="relative aspect-[16/9] w-full max-h-[640px] overflow-hidden bg-black">
+        <div className="relative overflow-hidden rounded-2xl bg-white border border-[#cfe0f2] shadow-[0_4px_24px_rgba(15,23,42,0.04)]">
+          <div className="relative aspect-[16/9] w-full max-h-[620px] overflow-hidden bg-slate-900">
             <video
               src={assetPath('/assets/lab/thruster-test.mp4')}
               poster={assetPath('/assets/lab/thruster-test-poster.jpg')}
@@ -43,25 +40,26 @@ export default function LabTesting() {
               className="h-full w-full object-cover"
             />
             {/* Live Indicator overlay */}
-            <div className="pointer-events-none absolute top-4 left-4 flex items-center gap-2 rounded bg-void/80 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-cyan backdrop-blur-md border border-cyan/40">
-              <span className="h-2 w-2 rounded-full bg-cyan animate-ping" />
-              <span>IN-LAB FIRING TEST // BRAHMION THRUSTER</span>
+            <div className="pointer-events-none absolute top-4 left-4 flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 font-sans text-xs uppercase tracking-wider text-[#0284c7] font-semibold backdrop-blur-xs border border-[#cfe0f2] shadow-2xs">
+              <span className="h-2 w-2 rounded-full bg-[#0284c7]" />
+              <span>Hot-Fire Test Stand · Brahmion Thruster</span>
             </div>
           </div>
 
           {/* Video Footer Info */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 bg-white/[0.02] border-t border-line">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 border-t border-[#e2e8f0] bg-[#f8fbfe]">
             <div className="flex items-center gap-3">
-              <CheckCircle2 size={16} className="text-cyan shrink-0" />
-              <p className="font-mono text-xs text-slate-300">
-                Hot-fire test bench verification — 100 mN / 1N thruster pulse sequence successfully executed.
+              <CheckCircle2 size={18} className="text-[#0284c7] shrink-0" />
+              <p className="font-sans text-xs font-semibold text-slate-900">
+                Hot-fire test bench verification — 100 mN / 1 N thruster pulse sequence successfully executed.
               </p>
             </div>
             <button
               onClick={() => scrollToId('contact')}
               className="btn btn-solid py-2 text-xs"
             >
-              REQUEST TEST DATA REPORT
+              <span>Request Test Data Report</span>
+              <ArrowRight size={13} />
             </button>
           </div>
         </div>

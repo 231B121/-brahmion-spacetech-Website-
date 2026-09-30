@@ -24,12 +24,12 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
       aria-live="polite"
     >
       <div className="text-center font-semibold tracking-[0.35em]">
-        <div className="text-2xl sm:text-4xl text-white font-display">BRAHMION</div>
-        <div className="text-xs text-cyan sm:text-sm font-mono mt-1 font-bold">SPACETECH</div>
+        <div className="text-2xl sm:text-4xl text-slate-900 font-bold">BRAHMION</div>
+        <div className="text-xs text-[#0284c7] sm:text-sm font-sans mt-1 font-bold">SPACETECH</div>
       </div>
-      <div className="mt-8 h-0.5 w-48 bg-white/10 rounded-full overflow-hidden">
+      <div className="mt-8 h-1 w-48 bg-[#cfe0f2] rounded-full overflow-hidden">
         <div
-          className="h-full bg-cyan transition-all duration-150 ease-out"
+          className="h-full bg-[#0284c7] transition-all duration-150 ease-out"
           style={{ width: `${p}%` }}
         />
       </div>

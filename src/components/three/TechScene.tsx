@@ -22,8 +22,18 @@ export default function TechScene({ selected, onSelect, mobile, reduced }: { sel
         <ExhaustParticles count={mobile ? 120 : 320} reduced={reduced} />
         {parts.map((p) => (
           <Html key={p.id} position={p.position} center zIndexRange={[10, 0]}>
-            <button onClick={() => onSelect(p.id)} aria-label={`Show ${p.label} details`} aria-pressed={selected === p.id}
-              className={`flex h-9 w-9 items-center justify-center rounded-full border font-mono text-[10px] backdrop-blur transition ${selected === p.id ? 'border-cyan bg-cyan/30 text-white' : 'border-white/40 bg-black/40 text-white/80 hover:border-cyan'}`}>+</button>
+            <button
+              onClick={() => onSelect(p.id)}
+              aria-label={`Show ${p.label} details`}
+              aria-pressed={selected === p.id}
+              className={`flex h-8 w-8 items-center justify-center rounded-full border font-sans text-xs font-bold transition shadow-xs backdrop-blur-xs ${
+                selected === p.id
+                  ? 'border-[#0284c7] bg-[#0284c7] text-white shadow-md scale-110'
+                  : 'border-[#cfe0f2] bg-white/95 text-slate-800 hover:border-[#0284c7] hover:text-[#0284c7]'
+              }`}
+            >
+              +
+            </button>
           </Html>
         ))}
       </Sway>

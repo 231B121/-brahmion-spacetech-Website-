@@ -9,78 +9,70 @@ function MemberCard({ member }: { member: Member }) {
   const initials = member.name.split(' ').map((n) => n[0]).join('')
 
   return (
-    <article className="relative rounded-lg flex flex-col justify-between overflow-hidden bg-surface/85 border border-line/80 p-6 transition-all duration-300 hover:border-cyan/50 hover:bg-surface shadow-[0_8px_30px_rgba(0,0,0,0.3)]">
-      {/* Subtle corner accent */}
-      <div className="absolute right-0 top-0 h-10 w-10 overflow-hidden pointer-events-none">
-        <div className="absolute right-0 top-0 h-[2px] w-6 bg-cyan/60" />
-        <div className="absolute right-0 top-0 h-6 w-[2px] bg-cyan/60" />
-      </div>
-
+    <article className="group relative rounded-2xl flex flex-col justify-between overflow-hidden bg-white border border-[#d6e4f0] p-6 shadow-[0_2px_12px_rgba(15,23,42,0.03)] transition-all duration-200 hover:border-[#0284c7] hover:shadow-[0_8px_24px_rgba(30,58,138,0.06)]">
       <div>
         {/* Photo Container */}
-        <div className="relative aspect-[4/4.2] w-full overflow-hidden rounded-sm bg-navy/60 border border-line">
+        <div className="relative aspect-[4/4] w-full overflow-hidden rounded-xl bg-[#edf5fc] border border-[#dce7f3]">
           {!imgError ? (
             <img
               src={assetPath(member.image)}
               alt={`${member.name} — ${member.role}`}
-              className="h-full w-full object-cover object-top filter grayscale contrast-105 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+              className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
               onError={() => setImgError(true)}
             />
           ) : (
-            <div className="grid h-full w-full place-items-center bg-navy text-5xl font-semibold text-cyan/70">
+            <div className="grid h-full w-full place-items-center bg-[#edf5fc] text-4xl font-bold text-[#0284c7]">
               {initials}
             </div>
           )}
-          {/* Subtle gradient vignette */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-60" />
         </div>
 
         {/* Member Details */}
         <div className="mt-5">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-cyan/90">
-              // {member.category.toUpperCase()}
+            <span className="font-sans text-[11px] uppercase tracking-wider text-[#0284c7] font-bold">
+              {member.category}
             </span>
             {member.degree && (
-              <span className="font-mono text-[10px] text-slate-500">
+              <span className="font-sans text-[11px] text-slate-700 font-bold">
                 IIT KANPUR
               </span>
             )}
           </div>
 
-          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white group-hover:text-cyan transition-colors">
+          <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-900 group-hover:text-[#0284c7] transition-colors">
             {member.name}
           </h3>
 
-          <p className="mt-1 font-mono text-xs tracking-wider text-cyan-alt">
+          <p className="mt-0.5 font-sans text-xs uppercase tracking-wider text-[#0284c7] font-bold">
             {member.role}
           </p>
 
           {member.degree && (
-            <p className="mt-1 font-mono text-[11px] text-slate-400">
+            <p className="mt-1 font-sans text-xs text-slate-700 font-semibold">
               {member.degree}
             </p>
           )}
 
-          <p className="mt-4 text-sm leading-relaxed text-slate-300/90 font-sans">
+          <p className="mt-3 text-sm leading-relaxed text-slate-700 font-medium font-sans">
             {member.note}
           </p>
         </div>
       </div>
 
       {/* Social / Professional links */}
-      <div className="mt-6 flex flex-wrap items-center gap-2.5 pt-4 border-t border-line/60">
+      <div className="mt-6 flex flex-wrap items-center gap-2 pt-4 border-t border-[#e2e8f0]">
         {member.linkedin && (
           <a
             href={member.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${member.name} on LinkedIn`}
-            className="inline-flex items-center gap-1.5 rounded border border-line bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] tracking-wider text-slate-300 transition-colors hover:border-cyan/60 hover:text-cyan hover:bg-cyan/10"
+            className="inline-flex items-center gap-1.5 rounded-md border border-[#cfe0f2] bg-white px-3 py-1.5 font-sans text-xs font-semibold text-slate-900 transition-colors hover:border-[#0284c7] hover:text-[#0284c7] hover:bg-[#edf5fc]"
           >
             <Linkedin size={13} className="shrink-0" />
-            <span>LINKEDIN</span>
+            <span>LinkedIn</span>
             <ArrowUpRight size={11} className="opacity-70" />
           </a>
         )}
@@ -89,10 +81,10 @@ function MemberCard({ member }: { member: Member }) {
           <a
             href={`mailto:${member.mail}`}
             aria-label={`Email ${member.name}`}
-            className="inline-flex items-center gap-1.5 rounded border border-line bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] tracking-wider text-slate-300 transition-colors hover:border-cyan/60 hover:text-cyan hover:bg-cyan/10"
+            className="inline-flex items-center gap-1.5 rounded-md border border-[#cfe0f2] bg-white px-3 py-1.5 font-sans text-xs font-semibold text-slate-900 transition-colors hover:border-[#0284c7] hover:text-[#0284c7] hover:bg-[#edf5fc]"
           >
             <Mail size={13} className="shrink-0" />
-            <span>EMAIL</span>
+            <span>Email</span>
           </a>
         )}
 
@@ -102,10 +94,10 @@ function MemberCard({ member }: { member: Member }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${member.name} faculty website`}
-            className="inline-flex items-center gap-1.5 rounded border border-line bg-white/[0.04] px-3 py-1.5 font-mono text-[11px] tracking-wider text-slate-300 transition-colors hover:border-cyan/60 hover:text-cyan hover:bg-cyan/10"
+            className="inline-flex items-center gap-1.5 rounded-md border border-[#cfe0f2] bg-white px-3 py-1.5 font-sans text-xs font-semibold text-slate-900 transition-colors hover:border-[#0284c7] hover:text-[#0284c7] hover:bg-[#edf5fc]"
           >
             <Globe size={13} className="shrink-0" />
-            <span>FACULTY PAGE</span>
+            <span>Faculty Page</span>
             <ArrowUpRight size={11} className="opacity-70" />
           </a>
         )}
@@ -119,21 +111,21 @@ export default function Team() {
   const mentors = team.filter((m) => m.category === 'Mentors')
 
   return (
-    <Section id="team" label="Team" className="py-24">
+    <Section id="team" label="Team" className="py-24 bg-[#f4f8fc]/60">
       <div className="wrap">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+        <div className="badge mb-4">
           <span>LEADERSHIP &amp; ADVISORS</span>
         </div>
-        <h2 className="h2 mb-4">The minds behind the mission</h2>
-        <p className="body-copy max-w-2xl mb-12 text-slate-200">
+        <h2 className="h2 mb-4 text-slate-900">The Minds Behind the Mission</h2>
+        <p className="body-copy max-w-2xl mb-12 text-slate-700 font-medium">
           Aerospace engineers, propellant chemists, and academic researchers pioneering safe, high-performance in-space propulsion systems at IIT Kanpur.
         </p>
 
         {/* Founders */}
         <div className="mb-14">
           <div className="mb-6 flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan font-bold">FOUNDING TEAM</span>
-            <div className="h-px flex-1 bg-line/80" />
+            <span className="font-sans text-xs uppercase tracking-wider text-[#0284c7] font-bold">FOUNDING TEAM</span>
+            <div className="h-px flex-1 bg-[#dce7f3]" />
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             {founders.map((m) => (
@@ -145,8 +137,8 @@ export default function Team() {
         {/* Mentors */}
         <div>
           <div className="mb-6 flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan font-bold">MENTORS &amp; ADVISORS</span>
-            <div className="h-px flex-1 bg-line/80" />
+            <span className="font-sans text-xs uppercase tracking-wider text-[#0284c7] font-bold">MENTORS &amp; ADVISORS</span>
+            <div className="h-px flex-1 bg-[#dce7f3]" />
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             {mentors.map((m) => (
@@ -155,17 +147,17 @@ export default function Team() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-line/60 pt-6">
-          <p className="font-mono text-xs text-slate-500">
+        <div className="mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[#dce7f3] pt-6">
+          <p className="font-sans text-xs text-slate-700 font-bold">
             INCUBATED AT SIIC · INDIAN INSTITUTE OF TECHNOLOGY KANPUR
           </p>
           <a
             href="https://www.linkedin.com/company/brahmion-spacetech"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-cyan hover:underline"
+            className="inline-flex items-center gap-2 font-sans text-xs font-semibold text-[#0284c7] hover:underline"
           >
-            <span>VIEW COMPANY UPDATES ON LINKEDIN</span>
+            <span>View Company Updates on LinkedIn</span>
             <ArrowUpRight size={14} />
           </a>
         </div>

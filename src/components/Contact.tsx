@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import Section from './ui/Section'
-import WordReveal from './ui/WordReveal'
-import MagneticButton from './ui/MagneticButton'
 import { contact } from '../data/contact'
-import { Mail, MapPin, Compass, Briefcase, Handshake, Linkedin, Send } from 'lucide-react'
+import { Mail, MapPin, Building2, Briefcase, Handshake, Linkedin, Send } from 'lucide-react'
 
 export default function Contact() {
   const [selectedTopic, setSelectedTopic] = useState<'general' | 'partner' | 'career'>('general')
@@ -30,84 +28,81 @@ export default function Contact() {
   const mailUrl = `mailto:${contact.email}?subject=${encodeURIComponent(currentDraft.subject)}&body=${encodeURIComponent(currentDraft.body)}`
 
   return (
-    <Section id="contact" label="Contact" className="min-h-[85vh] py-24">
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(90,209,230,0.12),transparent_65%)]"
-      />
+    <Section id="contact" label="Contact" className="min-h-[75vh] py-24 bg-white">
       <div className="wrap relative">
-        <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-cyan/30 bg-surface/80 px-4 py-1.5 backdrop-blur-md">
-          <span className="font-sans text-xs tracking-wider text-cyan font-medium">
-            || ब्रह्माण्डस्य नवप्रयाणम् ||
-          </span>
-          <span className="h-1 w-1 rounded-full bg-cyan" />
-          <span className="font-mono text-[10px] tracking-widest text-slate-300 font-bold uppercase">
-            GET IN TOUCH
-          </span>
+        <div className="badge mb-4">
+          <span>|| ब्रह्माण्डस्य नवप्रयाणम् ||</span>
+          <span>·</span>
+          <span>GET IN TOUCH</span>
         </div>
 
-        <h2 className="display mt-2">
-          <WordReveal text="LET'S BUILD" />
-          <br />
-          <WordReveal text="WHAT COMES NEXT." delay={0.15} />
+        <h2 className="display mt-2 tracking-tight text-slate-900">
+          Let's Build What Comes Next.
         </h2>
 
-        <p className="body-copy max-w-2xl mt-4 text-slate-200">
-          Developing next-generation green propulsion systems for safer, cleaner, and reliable space missions. Reach out for flight-testing, procurement, institutional partnerships, or careers.
+        <p className="body-copy max-w-2xl mt-4 text-slate-700 font-medium">
+          Developing next-generation green propulsion systems for safer, cleaner, and reliable space missions. Reach out for technical specifications, mission integration, institutional partnerships, or careers.
         </p>
 
-        {/* Draft Topic Selector */}
-        <div className="mt-10 rounded-lg border border-line/80 bg-surface/85 p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
-          <p className="font-mono text-xs uppercase tracking-widest text-cyan mb-4">
-            SELECT INQUIRY TYPE:
+        {/* Inquiry Topic Selector Card */}
+        <div className="mt-10 rounded-2xl border border-[#cfe0f2] bg-[#f8fbfe] p-6 sm:p-8 shadow-[0_4px_20px_rgba(15,23,42,0.03)]">
+          <p className="font-sans text-xs uppercase tracking-wider text-[#0284c7] mb-4 font-bold">
+            Select Inquiry Type:
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2.5">
             <button
               onClick={() => setSelectedTopic('general')}
-              className={`flex items-center gap-2 rounded border px-4 py-2 font-mono text-xs uppercase tracking-wider transition ${
+              className={`flex items-center gap-2 rounded-lg border px-4 py-2.5 font-sans text-xs font-bold tracking-wide transition-colors ${
                 selectedTopic === 'general'
-                  ? 'border-cyan bg-cyan/20 text-white'
-                  : 'border-line text-slate-400 hover:border-slate-500'
+                  ? 'border-[#0284c7] bg-[#edf5fc] text-[#0284c7] shadow-2xs'
+                  : 'border-[#cfe0f2] bg-white text-slate-900 hover:border-[#0284c7] hover:text-[#0284c7]'
               }`}
             >
-              <Mail size={14} />
+              <Mail size={15} />
               <span>General Enquiry</span>
             </button>
 
             <button
               onClick={() => setSelectedTopic('partner')}
-              className={`flex items-center gap-2 rounded border px-4 py-2 font-mono text-xs uppercase tracking-wider transition ${
+              className={`flex items-center gap-2 rounded-lg border px-4 py-2.5 font-sans text-xs font-bold tracking-wide transition-colors ${
                 selectedTopic === 'partner'
-                  ? 'border-cyan bg-cyan/20 text-white'
-                  : 'border-line text-slate-400 hover:border-slate-500'
+                  ? 'border-[#0284c7] bg-[#edf5fc] text-[#0284c7] shadow-2xs'
+                  : 'border-[#cfe0f2] bg-white text-slate-900 hover:border-[#0284c7] hover:text-[#0284c7]'
               }`}
             >
-              <Handshake size={14} />
-              <span>Partnership & Investment</span>
+              <Handshake size={15} />
+              <span>Partnership &amp; Investment</span>
             </button>
 
             <button
               onClick={() => setSelectedTopic('career')}
-              className={`flex items-center gap-2 rounded border px-4 py-2 font-mono text-xs uppercase tracking-wider transition ${
+              className={`flex items-center gap-2 rounded-lg border px-4 py-2.5 font-sans text-xs font-bold tracking-wide transition-colors ${
                 selectedTopic === 'career'
-                  ? 'border-cyan bg-cyan/20 text-white'
-                  : 'border-line text-slate-400 hover:border-slate-500'
+                  ? 'border-[#0284c7] bg-[#edf5fc] text-[#0284c7] shadow-2xs'
+                  : 'border-[#cfe0f2] bg-white text-slate-900 hover:border-[#0284c7] hover:text-[#0284c7]'
               }`}
             >
-              <Briefcase size={14} />
-              <span>Join the Crew (Careers)</span>
+              <Briefcase size={15} />
+              <span>Careers &amp; Engineering</span>
             </button>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
-            <MagneticButton solid href={mailUrl} external>
-              Send Pre-filled Email <Send size={14} className="ml-1" />
-            </MagneticButton>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href={mailUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="btn btn-solid inline-flex items-center gap-2"
+            >
+              <span>Send Pre-filled Email</span>
+              <Send size={14} />
+            </a>
+
             <a
               href={contact.linkedin}
               target="_blank"
               rel="noreferrer noopener"
-              className="btn flex items-center gap-2"
+              className="btn inline-flex items-center gap-2 text-slate-900 font-semibold"
             >
               <Linkedin size={15} />
               <span>Connect on LinkedIn</span>
@@ -115,38 +110,38 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Official Coordinates & Lab Address */}
-        <dl className="mt-14 grid gap-8 font-mono text-xs tracking-widest sm:grid-cols-3 border-t border-line/80 pt-8">
+        {/* Corporate Address & Contact Details */}
+        <dl className="mt-12 grid gap-6 font-sans text-xs sm:grid-cols-3 border-t border-[#dce7f3] pt-8">
           <div>
-            <dt className="text-slate-500 flex items-center gap-2 mb-1.5">
-              <Mail size={13} className="text-cyan" />
+            <dt className="text-slate-700 font-bold flex items-center gap-2 mb-1.5 uppercase tracking-wider">
+              <Mail size={15} className="text-[#0284c7]" />
               <span>OFFICE EMAIL</span>
             </dt>
-            <dd className="mt-1 font-sans text-sm text-white break-words">
-              <a href={`mailto:${contact.email}`} className="hover:text-cyan transition-colors">
+            <dd className="mt-1 font-sans text-sm text-slate-900 font-bold break-words">
+              <a href={`mailto:${contact.email}`} className="hover:text-[#0284c7] transition-colors">
                 {contact.email}
               </a>
             </dd>
           </div>
 
           <div>
-            <dt className="text-slate-500 flex items-center gap-2 mb-1.5">
-              <MapPin size={13} className="text-cyan" />
-              <span>FACILITY ADDRESS</span>
+            <dt className="text-slate-700 font-bold flex items-center gap-2 mb-1.5 uppercase tracking-wider">
+              <Building2 size={15} className="text-[#0284c7]" />
+              <span>INCUBATION FACILITY</span>
             </dt>
-            <dd className="mt-1 font-sans text-sm text-white leading-relaxed">
-              {contact.location}
+            <dd className="mt-1 font-sans text-sm text-slate-900 font-bold leading-relaxed">
+              SIIC, Analytical Lab, SIDBI Building
+              <span className="block text-slate-700 text-xs mt-0.5 font-medium">IIT Kanpur, Uttar Pradesh, India</span>
             </dd>
           </div>
 
           <div>
-            <dt className="text-slate-500 flex items-center gap-2 mb-1.5">
-              <Compass size={13} className="text-cyan" />
-              <span>LOCATION COORDINATES</span>
+            <dt className="text-slate-700 font-bold flex items-center gap-2 mb-1.5 uppercase tracking-wider">
+              <MapPin size={15} className="text-[#0284c7]" />
+              <span>HEADQUARTERS</span>
             </dt>
-            <dd className="mt-1 font-mono text-xs text-cyan">
-              LAT 26.5123° N — LON 80.2329° E
-              <span className="block text-slate-400 text-[11px] mt-0.5">IIT KANPUR, INDIA</span>
+            <dd className="mt-1 font-sans text-sm text-slate-900 font-bold leading-relaxed">
+              {contact.location}
             </dd>
           </div>
         </dl>

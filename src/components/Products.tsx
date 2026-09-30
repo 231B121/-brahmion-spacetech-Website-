@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Sparkles, Tag, ShieldCheck, Filter } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Tag, ShieldCheck, Filter } from 'lucide-react'
 import Section from './ui/Section'
 import { flagship, products, type Product } from '../data/products'
 import { assetPath, scrollToId } from '../lib/utils'
@@ -17,101 +17,93 @@ function ProductCard({
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      className="relative rounded-lg flex flex-col justify-between overflow-hidden bg-surface/85 border border-line/90 p-6 transition-all duration-300 hover:border-cyan/60 hover:bg-surface shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.2 }}
+      className="group relative rounded-xl flex flex-col justify-between overflow-hidden bg-white border border-[#d6e4f0] p-6 transition-all duration-200 hover:border-[#0284c7] hover:shadow-[0_8px_24px_rgba(30,58,138,0.06)]"
     >
-      {/* Accent corner */}
-      <div className="absolute top-0 right-0 h-12 w-12 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 h-[2px] w-8 bg-cyan/50" />
-        <div className="absolute top-0 right-0 h-8 w-[2px] bg-cyan/50" />
-      </div>
-
       <div>
         {/* Product Image */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-sm bg-navy/60 border border-line">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[#edf5fc] border border-[#dce7f3]">
           {!imgError ? (
             <img
               src={assetPath(product.image)}
               alt={product.name}
-              className="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+              className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
               onError={() => setImgError(true)}
             />
           ) : (
-            <div className="grid h-full w-full place-items-center bg-navy text-sm font-mono text-cyan/70">
+            <div className="grid h-full w-full place-items-center bg-[#edf5fc] text-sm font-semibold text-[#0284c7]">
               {product.name}
             </div>
           )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void/90 via-transparent to-transparent opacity-40" />
 
-          {/* Category Pill */}
-          <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded bg-void/85 border border-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-cyan backdrop-blur-md">
+          {/* Category Tag */}
+          <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-white/95 border border-[#cfe0f2] px-3 py-1 font-sans text-[11px] font-semibold text-[#0369a1] shadow-2xs backdrop-blur-xs">
             <Tag size={11} className="shrink-0" />
             <span>{product.category}</span>
           </div>
 
           {product.featured && (
-            <div className="absolute top-3 right-3 flex items-center gap-1 rounded bg-cyan/20 border border-cyan/50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-cyan backdrop-blur-md">
-              <Sparkles size={11} />
-              <span>HIGH EFFICIENCY</span>
+            <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-[#e0f2fe] border border-[#bae6fd] px-2.5 py-0.5 font-sans text-[10px] font-bold uppercase tracking-wider text-[#0369a1]">
+              <span>High Efficiency</span>
             </div>
           )}
         </div>
 
         {/* Header & Subtitle */}
         <div className="mt-5">
-          <h3 className="text-2xl font-semibold tracking-tight text-white group-hover:text-cyan transition-colors">
+          <h3 className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-[#0284c7] transition-colors">
             {product.name}
           </h3>
-          <p className="mt-1 font-mono text-xs uppercase tracking-wider text-cyan-alt">
+          <p className="mt-0.5 font-sans text-xs font-semibold uppercase tracking-wider text-[#0284c7]">
             {product.subtitle}
           </p>
 
-          {/* Pricing Box */}
-          <div className="my-4 rounded border border-line/80 bg-white/[0.03] p-3.5 flex items-baseline justify-between">
+          {/* Pricing & Qualification Box */}
+          <div className="my-4 rounded-lg border border-[#e2e8f0] bg-[#f8fbfe] p-3.5 flex flex-wrap items-center justify-between gap-2.5">
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400 block mb-0.5">
-                ESTIMATED PRICING
+              <span className="font-sans text-[10px] uppercase tracking-wider text-slate-700 block mb-0.5 font-bold">
+                ESTIMATED UNIT PRICING
               </span>
               <div className="flex items-baseline gap-1.5">
-                <span className="font-mono text-xl font-bold tracking-tight text-white group-hover:text-cyan">
+                <span className="font-sans text-lg font-bold text-slate-900 group-hover:text-[#0284c7]">
                   {product.price}
                 </span>
                 {product.priceUnit && (
-                  <span className="font-mono text-xs text-slate-400">
+                  <span className="font-sans text-xs text-slate-700 font-semibold">
                     {product.priceUnit}
                   </span>
                 )}
               </div>
             </div>
-            <div className="text-right">
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] text-cyan/90 border border-cyan/30 rounded px-2 py-0.5 bg-cyan/5">
+            <div>
+              <span className="inline-flex items-center gap-1 font-sans text-[10px] font-semibold text-[#0284c7] border border-[#bae6fd] rounded-full px-2.5 py-0.5 bg-[#f0f9ff]">
                 <ShieldCheck size={11} />
-                <span>CLEAN TECH</span>
+                <span>Clean Monoprop</span>
               </span>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-sm leading-relaxed text-slate-300/90 font-sans">
+          <p className="text-sm leading-relaxed text-slate-600">
             {product.description}
           </p>
 
           {/* Specs list */}
           <div className="mt-5 space-y-2">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-slate-500">
+            <p className="font-sans text-[11px] uppercase tracking-wider text-slate-700 font-bold">
               KEY SPECIFICATIONS
             </p>
-            <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <ul className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
               {product.specs.map((spec, i) => (
                 <li
                   key={i}
-                  className="flex items-start gap-2 rounded border border-line/60 bg-white/[0.015] p-2 text-xs text-slate-300"
+                  className="flex items-start gap-2 rounded-md border border-[#e2e8f0] bg-[#fbfdff] p-2 text-xs text-slate-900 font-medium"
                 >
-                  <CheckCircle2 size={13} className="text-cyan shrink-0 mt-0.5" />
+                  <CheckCircle2 size={13} className="text-[#0284c7] shrink-0 mt-0.5" />
                   <span className="leading-snug">{spec}</span>
                 </li>
               ))}
@@ -121,13 +113,13 @@ function ProductCard({
       </div>
 
       {/* CTA Button */}
-      <div className="mt-6 pt-4 border-t border-line/60">
+      <div className="mt-6 pt-4 border-t border-[#e2e8f0]">
         <button
           onClick={() => onRequest(product)}
-          className="w-full flex items-center justify-center gap-2 rounded border border-line bg-white/[0.04] py-2.5 font-mono text-xs uppercase tracking-wider text-white transition-all duration-300 hover:border-cyan hover:bg-cyan/15 hover:text-cyan active:scale-95"
+          className="w-full flex items-center justify-center gap-2 rounded-md border border-[#cfe0f2] bg-white py-2.5 font-sans text-xs font-semibold uppercase tracking-wider text-slate-900 transition-all hover:border-[#0284c7] hover:bg-[#edf5fc] hover:text-[#0284c7] active:scale-[0.98]"
         >
-          <span>REQUEST PROPOSAL / DATASHEET</span>
-          <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+          <span>Request Technical Datasheet</span>
+          <ArrowRight size={13} />
         </button>
       </div>
     </motion.article>
@@ -135,11 +127,11 @@ function ProductCard({
 }
 
 const CATEGORIES = [
-  { id: 'ALL', label: 'ALL SOLUTIONS' },
-  { id: 'Green Propellant', label: 'GREEN PROPELLANTS' },
-  { id: 'Catalyst Technology', label: 'CATALYSTS' },
-  { id: 'Hardware Thruster', label: 'MICRO THRUSTERS' },
-  { id: 'Integrated Propulsion', label: 'INTEGRATED SYSTEMS' },
+  { id: 'ALL', label: 'All Propulsion' },
+  { id: 'Green Propellant', label: 'Green Propellants' },
+  { id: 'Catalyst Technology', label: 'Ceramic Catalysts' },
+  { id: 'Hardware Thruster', label: 'Micro Thrusters' },
+  { id: 'Integrated Propulsion', label: 'Integrated Systems' },
 ]
 
 export default function Products() {
@@ -155,54 +147,53 @@ export default function Products() {
     setToastMessage(`Datasheet request initiated for "${p.name}". Scrolling to contact desk...`)
     setTimeout(() => {
       scrollToId('contact')
-    }, 400)
+    }, 250)
     setTimeout(() => {
       setToastMessage(null)
-    }, 4500)
+    }, 4000)
   }
 
   return (
-    <Section id="products" label="Products" className="overflow-hidden py-24">
+    <Section id="products" label="Products" className="py-24 bg-[#f4f8fc]/60">
       <div className="wrap">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+        <div className="badge mb-4">
           <span>PROPULSION CATALOGUE</span>
         </div>
-        <h2 className="h2 mb-4">Propulsion Solutions for the New Space Era</h2>
-        <p className="body-copy max-w-3xl mb-12">
+        <h2 className="h2 mb-4 text-slate-900">Propulsion Solutions for the New Space Era</h2>
+        <p className="body-copy max-w-3xl mb-12 text-slate-600">
           Engineered as high-performance, non-toxic alternatives to hydrazine. From flight-grade green monopropellants to ceramic catalyst beds and precision micro thrusters.
         </p>
 
         {/* Flagship Section */}
-        <div className="mb-16 rounded-lg border border-line/80 bg-surface/75 p-6 sm:p-10 relative overflow-hidden backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[11px] text-cyan tracking-widest uppercase font-bold">
-            IN-HOUSE FLAGSHIP HARDWARE
+        <div className="mb-14 rounded-2xl border border-[#cfe0f2] bg-white p-6 sm:p-10 relative overflow-hidden shadow-[0_4px_24px_rgba(15,23,42,0.04)]">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <span className="badge">FLAGSHIP HARDWARE</span>
+            <span className="font-sans text-xs font-semibold text-[#0284c7]">
+              HOT-FIRE STAND VALIDATED
+            </span>
           </div>
 
-          <motion.h3
-            initial={{ opacity: 0, filter: 'blur(14px)', letterSpacing: '0.2em' }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', letterSpacing: '-0.02em' }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="font-semibold uppercase leading-none"
-            style={{ fontSize: 'clamp(2.4rem, 9vw, 6.5rem)' }}
+          <h3
+            className="font-bold uppercase leading-tight tracking-tight text-slate-900"
+            style={{ fontSize: 'clamp(1.8rem, 4.5vw, 3.5rem)' }}
           >
             {flagship.name}
-          </motion.h3>
+          </h3>
 
-          <p className="mt-1 font-mono text-sm tracking-widest text-slate-400">
+          <p className="mt-2 font-sans text-sm font-semibold tracking-wide text-slate-700">
             {flagship.native} · {flagship.kind}
           </p>
 
           <div className="mt-8 grid items-center gap-8 lg:grid-cols-2">
             <div>
-              <p className="body-copy text-lg">{flagship.text}</p>
-              <ul className="mt-6 grid grid-cols-2 gap-3">
+              <p className="body-copy text-base sm:text-lg text-slate-700 leading-relaxed font-medium">{flagship.text}</p>
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {flagship.callouts.map((c) => (
                   <li
                     key={c}
-                    className="hairline bg-white/[0.02] px-4 py-2.5 font-mono text-[11px] tracking-wider text-cyan/90 flex items-center gap-2"
+                    className="border border-[#cfe0f2] bg-[#f8fbfe] px-3.5 py-2 font-sans text-xs font-semibold text-slate-900 flex items-center gap-2 rounded-md"
                   >
-                    <CheckCircle2 size={13} className="text-cyan shrink-0" />
+                    <CheckCircle2 size={14} className="text-[#0284c7] shrink-0" />
                     <span>{c}</span>
                   </li>
                 ))}
@@ -210,68 +201,62 @@ export default function Products() {
               <div className="mt-6">
                 <button
                   onClick={() => scrollToId('contact')}
-                  className="btn"
+                  className="btn btn-solid"
                 >
-                  SCHEDULE TECHNICAL BRIEFING
-                  <ArrowRight size={15} />
+                  Schedule Technical Briefing
+                  <ArrowRight size={14} />
                 </button>
               </div>
             </div>
 
             <div
-              className="hairline grid-bg p-6 relative rounded-sm"
+              className="border border-[#cfe0f2] p-6 relative rounded-xl bg-[#f0f6fc]"
               role="img"
               aria-label="Schematic of a micro thruster"
             >
               <svg viewBox="0 0 400 260" className="w-full">
-                <g fill="none" stroke="#5ad1e6" strokeWidth="1.5">
-                  <motion.path
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 2 }}
-                    d="M60 90 H160 V70 H230 V90 H250 L340 40 V220 L250 170 H230 V190 H160 V170 H60 Z"
-                  />
-                  <path d="M170 100 H225 V160 H170 Z" strokeOpacity=".5" strokeDasharray="4 4" />
+                <g fill="none" stroke="#0284c7" strokeWidth="1.8">
+                  <path d="M60 90 H160 V70 H230 V90 H250 L340 40 V220 L250 170 H230 V190 H160 V170 H60 Z" />
+                  <path d="M170 100 H225 V160 H170 Z" strokeOpacity=".6" strokeDasharray="4 4" />
                 </g>
-                <g fontFamily="monospace" fontSize="9" fill="#8fa3bf">
+                <g fontFamily="sans-serif" fontSize="10" fontWeight="700" fill="#0f172a">
                   <text x="60" y="60">FEED SYSTEM</text>
                   <text x="168" y="130">CATALYST BED</text>
-                  <text x="295" y="30">EXPANSION NOZZLE</text>
+                  <text x="285" y="30">EXPANSION NOZZLE</text>
                 </g>
-                <text x="60" y="245" fontFamily="monospace" fontSize="8" fill="#64748b">
-                  HARDWARE ARCHITECTURE // SIIC IIT KANPUR HOT-FIRE STAND
+                <text x="60" y="245" fontFamily="sans-serif" fontSize="9" fontWeight="600" fill="#334155">
+                  HARDWARE ARCHITECTURE · SIIC IIT KANPUR HOT-FIRE STAND
                 </text>
               </svg>
             </div>
           </div>
         </div>
 
-        {/* All Products Grid with Interactive Filter */}
+        {/* All Products Grid with Category Tabs */}
         <div>
-          <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-line pb-4">
+          <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#cfe0f2] pb-4">
             <div>
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan block mb-1 font-bold">
-                PROPULSION SOLUTIONS &amp; PRICING
+              <span className="font-sans text-xs uppercase tracking-wider text-[#0284c7] block mb-1 font-bold">
+                Propulsion Solutions &amp; Datasheets
               </span>
-              <span className="font-mono text-xs text-slate-500">
-                5 FLIGHT-READY TECHNOLOGIES · TRL 3 TO 4
+              <span className="font-sans text-xs text-slate-700 font-medium">
+                5 Flight-Ready Technologies · TRL 3 to 4
               </span>
             </div>
 
-            {/* Interactive Category Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-1.5">
-              <Filter size={13} className="text-cyan/70 mr-1 hidden sm:block" />
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap items-center gap-2">
+              <Filter size={14} className="text-slate-400 mr-1 hidden sm:block" />
               {CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.id
                 return (
                   <button
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.id)}
-                    className={`rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-wider uppercase transition-all ${
+                    className={`rounded-full px-3.5 py-1.5 font-sans text-xs font-semibold transition-colors ${
                       isSelected
-                        ? 'bg-cyan text-void shadow-[0_0_12px_rgba(90,209,230,0.5)]'
-                        : 'border border-line/80 text-slate-400 hover:border-slate-500 hover:text-white'
+                        ? 'bg-[#0284c7] text-white shadow-2xs'
+                        : 'border border-[#cfe0f2] bg-white text-slate-600 hover:border-[#0284c7] hover:text-[#0284c7]'
                     }`}
                   >
                     {cat.label}
@@ -291,16 +276,16 @@ export default function Products() {
         </div>
       </div>
 
-      {/* Floating Interactive Toast Feedback */}
+      {/* Floating Notification Toast */}
       <AnimatePresence>
         {toastMessage && (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-lg border border-cyan/50 bg-void/95 px-5 py-3 font-mono text-xs text-white shadow-[0_0_25px_rgba(90,209,230,0.4)] backdrop-blur-xl"
+            exit={{ opacity: 0, y: 15 }}
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-lg border border-[#cfe0f2] bg-white px-4 py-3 font-sans text-xs font-medium text-slate-900 shadow-xl backdrop-blur-xl"
           >
-            <span className="h-2 w-2 rounded-full bg-cyan animate-ping" />
+            <CheckCircle2 size={16} className="text-[#0284c7] shrink-0" />
             <span>{toastMessage}</span>
           </motion.div>
         )}

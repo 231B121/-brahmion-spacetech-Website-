@@ -16,24 +16,25 @@ const capabilityBadges = [
 
 export default function Capabilities() {
   return (
-    <Section id="capabilities" label="Capabilities" className="py-24">
+    <Section id="capabilities" label="Capabilities" className="py-24 bg-[#f4f8fc]/60">
       <div className="wrap">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan">
+        <div className="badge mb-4">
           <span>CORE R&amp;D CAPABILITIES</span>
         </div>
+
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div>
-            <h2 className="h2 tracking-tight leading-[0.98]">
+            <h2 className="h2 tracking-tight text-slate-900">
               Propulsion Engineering <br />
-              <span className="text-cyan">Capabilities</span>
+              <span className="text-[#0284c7]">Capabilities</span>
             </h2>
-            <p className="body-copy mt-4 max-w-2xl text-slate-200">
+            <p className="body-copy mt-4 max-w-2xl text-slate-700 font-medium">
               From molecular formulation of green propellants to vacuum hot-fire qualification, Brahmion brings full-stack aerospace propulsion design under one roof at SIIC, IIT Kanpur.
             </p>
           </div>
 
-          <div className="font-mono text-xs text-slate-300">
-            <span className="text-cyan font-bold">SIIC IIT KANPUR</span> · AEROSPACE DEEP-TECH
+          <div className="font-sans text-xs text-slate-700 font-medium">
+            <span className="text-[#0284c7] font-bold">SIIC IIT KANPUR</span> · AEROSPACE DEEP-TECH
           </div>
         </div>
 
@@ -44,32 +45,32 @@ export default function Capabilities() {
             return (
               <motion.div
                 key={c.id}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="relative rounded-lg flex flex-col justify-between bg-surface/80 border border-line/80 p-7 transition-all duration-300 hover:border-cyan/60 hover:bg-surface shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className="group relative rounded-2xl flex flex-col justify-between bg-white border border-[#d6e4f0] p-7 shadow-[0_2px_12px_rgba(15,23,42,0.03)] transition-all duration-200 hover:border-[#0284c7] hover:shadow-[0_8px_24px_rgba(30,58,138,0.06)]"
               >
                 <div>
-                  <div className="flex items-center justify-between border-b border-line/60 pb-3 mb-5">
-                    <span className="font-mono text-[10px] font-bold tracking-widest text-cyan">
+                  <div className="flex items-center justify-between border-b border-[#e2e8f0] pb-3 mb-5">
+                    <span className="font-sans text-[11px] font-bold tracking-wider text-[#0284c7]">
                       {badge}
                     </span>
-                    <Icon className="h-5 w-5 text-slate-400 transition-colors group-hover:text-cyan" />
+                    <Icon className="h-5 w-5 text-slate-500 transition-colors group-hover:text-[#0284c7]" />
                   </div>
 
-                  <h3 className="font-sans text-lg font-bold text-white group-hover:text-cyan transition-colors">
+                  <h3 className="font-sans text-lg font-bold text-slate-900 group-hover:text-[#0284c7] transition-colors">
                     {c.title}
                   </h3>
 
-                  <p className="body-copy mt-3 text-xs leading-relaxed text-slate-300/85">
+                  <p className="body-copy mt-3 text-sm leading-relaxed text-slate-700 font-medium">
                     {c.text}
                   </p>
                 </div>
 
-                <div className="mt-6 border-t border-line/50 pt-3 flex items-center justify-between font-mono text-[10px] text-slate-500">
-                  <span>DISCIPLINE 0{i + 1}</span>
-                  <span className="text-cyan font-semibold">QUALIFIED</span>
+                <div className="mt-6 border-t border-[#e2e8f0] pt-3.5 flex items-center justify-between font-sans text-xs text-slate-700">
+                  <span className="font-semibold">Discipline 0{i + 1}</span>
+                  <span className="text-[#0284c7] font-bold">VALIDATED</span>
                 </div>
               </motion.div>
             )
